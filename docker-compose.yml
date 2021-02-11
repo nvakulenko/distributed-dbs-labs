@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  postgres:
+    build:
+      context: ./docker
+#    volumes:
+##      - ./init.sql:/Dockerfile-entrypoint-initdb.d/init.sql
+#      - ./schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
+##      - ./data.sql:/Dockerfile-entrypoint-initdb.d/2-data.sql
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    command: --max_prepared_transactions=11
